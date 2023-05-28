@@ -57,7 +57,7 @@ async def answer(bot, query):
         )
 
     if results:
-        switch_pm_text = f"{emoji.FILE_FOLDER} sonuçlar"
+        switch_pm_text = f"{emoji.FILE_FOLDER} SON YÜKLENENLER"
         if text:
             switch_pm_text += f" için {text}"
 
@@ -72,7 +72,7 @@ async def answer(bot, query):
 
         switch_pm_text = f'{emoji.CROSS_MARK} sonuç yok'
         if text:
-            switch_pm_text += f' için "{text}"'
+            switch_pm_text += f' "{text}"'
 
         await query.answer(
             results=[],
@@ -86,8 +86,9 @@ def get_reply_markup(username, query):
     url = 't.me/share/url?url=' + quote(SHARE_BUTTON_TEXT.format(username=username))
     buttons = [
         [
-            InlineKeyboardButton('Arama Yap', switch_inline_query_current_chat=query),
             InlineKeyboardButton('Botu Paylaş', url=url),
+            InlineKeyboardButton('Arama Yap', switch_inline_query_current_chat=query),
+
         ]
     ]
     return InlineKeyboardMarkup(buttons)
